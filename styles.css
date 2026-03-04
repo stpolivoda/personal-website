@@ -1,0 +1,323 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors */
+    --bg-color: #ffffff;
+    --bg-secondary-color: #FAFAFA;
+    --font-color: #50575c;
+    --accent-color: #2d3b44;
+    --border-color: #ebebeb;
+    --btn-bg-color: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+    --btn-active-bg-color: #222c33;
+    --btn-hover-bg-color: #ebebeb;
+    --btn-text-color: #4e5559;
+    --btn-active-text-color: #ffffff;
+
+    /* Spacing */
+    --spacing-xlg: 5.5rem;
+    --spacing-lg: 2rem;
+    --spacing-md: 1rem;
+    --spacing-sm: 0.5rem;
+
+    /* Font size */
+    --text-normal: 0.875rem;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: var(--font-color);
+    font-size: var(--text-normal);
+    line-height: 1.2;
+    margin: 0 1rem;
+}
+
+h5 {
+    color: var(--accent-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+a {
+    color: var(--accent-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: var(--spacing-xlg) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.nav-filters {
+    padding-top: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.filter-btn {
+    border: 1px solid var(--border-color);
+    border-radius: 200px;
+    padding: 6px 12px;
+    background: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    font-weight: 500;
+    font-size: var(--text-normal);
+    cursor: pointer;
+    transition: background 150ms ease-out, color 150ms ease-out, border-color 150ms ease-out;
+}
+
+.filter-btn:hover {
+    background: var(--btn-hover-bg-color);
+}
+
+.filter-btn.active {
+    background: var(--btn-active-bg-color);
+    color: var(--btn-active-text-color);
+}
+
+.hidden {
+    display: none;
+}
+
+.cv-description {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.cv-download {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+    background: var(--bg-secondary-color);
+    border-radius: 12px;
+}
+
+.icon-btn {
+    cursor: pointer;
+    font-size: 32px;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+    user-select: none;
+    display: inline-block;
+}
+
+.spinning {
+    animation: rotate 1s linear infinite;
+    color: var(--accent-color);
+}
+
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+ }
+
+.done { 
+    color: var(--accent-color); 
+}
+
+.cv-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.explorations-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xlg);
+}
+
+.exploration-card__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.exploration-card__content {
+    margin-top: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.experience-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+}
+
+.experience-row {
+    display: grid;
+    grid-template-columns: minmax(0, 8rem) minmax(0, 10rem) minmax(0, 1.5fr);
+    column-gap: var(--spacing-xlg);
+    align-items: flex-start;
+}
+
+.experience-row--education {
+    margin-top: var(--spacing-xlg);
+}
+
+.experience-col--meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.experience-company,
+.experience-role {
+    font-size: var(--text-normal);
+}
+
+/* Blog list */
+
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xlg);
+}
+
+.blog-preview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+    color: var(--font-color);
+    font-weight: 400;
+}
+
+.blog-preview:hover {
+    text-decoration: none;
+}
+
+.blog-preview:hover .blog-preview__title {
+    text-decoration: underline;
+}
+
+.blog-preview__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--spacing-lg);
+}
+
+.blog-preview__title {
+    color: var(--accent-color);
+    font-weight: 500;
+    font-size: var(--text-normal);
+}
+
+.blog-preview__date {
+    color: var(--font-color);
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* Blog article */
+
+.blog-back-btn {
+    align-self: flex-start;
+    text-decoration: none;
+}
+
+.blog-back-btn:hover {
+    text-decoration: none;
+}
+
+.blog-article {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-article__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--spacing-lg);
+}
+
+.blog-article__date {
+    color: var(--font-color);
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.blog-article__body {
+    margin-top: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.blog-article__nav {
+    margin-top: var(--spacing-xlg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.blog-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+    color: var(--font-color);
+    font-weight: 400;
+}
+
+.blog-nav-link__title {
+    color: var(--accent-color);
+    font-weight: 500;
+    font-size: var(--text-normal);
+}
+
+.blog-nav-link:hover .blog-nav-link__title {
+    text-decoration: underline;
+}
+
+/* Dark theme */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1e22;
+        --bg-secondary-color: #22272c;
+        --font-color: #a0a8ae;
+        --accent-color: #d6dce1;
+        --border-color: #333a40;
+        --btn-bg-color: linear-gradient(180deg, #2a3038 0%, #22272c 100%);
+        --btn-active-bg-color: #d6dce1;
+        --btn-hover-bg-color: #333a40;
+        --btn-text-color: #a0a8ae;
+        --btn-active-text-color: #1a1e22;
+    }
+}
