@@ -52,7 +52,7 @@ function applyFilter(filterValue) {
 // Restore last active filter on load (no animation)
 window.addEventListener("load", () => {
     const saved = window.localStorage.getItem("activeFilter");
-    const initialFilter = saved || "resume";
+    const initialFilter = saved || "explorations";
     applyFilter(initialFilter);
 });
 
