@@ -49,29 +49,36 @@ function applyFilter(filterValue) {
     });
 }
 
-function getHashFilter() {
-    const hash = window.location.hash.replace("#", "");
-    const valid = ["explorations", "projects", "blog", "resume"];
-    return valid.includes(hash) ? hash : null;
+const validFilters = ["explorations", "projects", "blog", "resume"];
+
+function getFilterFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get("tab");
+    return validFilters.includes(tab) ? tab : null;
 }
 
 window.addEventListener("load", () => {
-    const initialFilter = getHashFilter() || "explorations";
+    const initialFilter = getFilterFromURL() || "explorations";
     applyFilter(initialFilter);
-    if (!window.location.hash) {
-        history.replaceState(null, "", "#" + initialFilter);
-    }
-});
-
-window.addEventListener("hashchange", () => {
-    const filter = getHashFilter();
-    if (filter) applyFilter(filter);
 });
 
 filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
         const filterValue = button.dataset.filter;
         if (!filterValue) return;
-        window.location.hash = filterValue;
+
+        const url = new URL(window.location);
+        if (filterValue === "explorations") {
+            url.searchParams.delete("tab");
+        } else {
+            url.searchParams.set("tab", filterValue);
+        }
+        history.pushState(null, "", url);
+        applyFilter(filterValue);
     });
+});
+
+window.addEventListener("popstate", () => {
+    const filter = getFilterFromURL() || "explorations";
+    applyFilter(filter);
 });
