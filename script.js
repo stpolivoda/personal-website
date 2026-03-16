@@ -49,20 +49,29 @@ function applyFilter(filterValue) {
     });
 }
 
-// Restore last active filter on load (no animation)
+function getHashFilter() {
+    const hash = window.location.hash.replace("#", "");
+    const valid = ["explorations", "projects", "blog", "resume"];
+    return valid.includes(hash) ? hash : null;
+}
+
 window.addEventListener("load", () => {
-    const saved = window.localStorage.getItem("activeFilter");
-    const initialFilter = saved || "explorations";
+    const initialFilter = getHashFilter() || "explorations";
     applyFilter(initialFilter);
+    if (!window.location.hash) {
+        history.replaceState(null, "", "#" + initialFilter);
+    }
 });
 
-// Handle filter changes and persist selection
+window.addEventListener("hashchange", () => {
+    const filter = getHashFilter();
+    if (filter) applyFilter(filter);
+});
+
 filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
         const filterValue = button.dataset.filter;
         if (!filterValue) return;
-
-        window.localStorage.setItem("activeFilter", filterValue);
-        applyFilter(filterValue);
+        window.location.hash = filterValue;
     });
-}); 
+});
