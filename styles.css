@@ -32,7 +32,7 @@ body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: var(--font-color);
     font-size: var(--text-normal);
-    line-height: 1.2;
+    line-height: 1.5;
     margin: 0 1rem;
 }
 
@@ -105,6 +105,8 @@ a:hover {
     display: none;
 }
 
+/* Resume */
+
 .cv-description {
     display: flex;
     flex-grow: 1;
@@ -135,39 +137,19 @@ a:hover {
     color: var(--accent-color);
 }
 
-
 @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
- }
+}
 
-.done { 
-    color: var(--accent-color); 
+.done {
+    color: var(--accent-color);
 }
 
 .cv-details {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
-}
-
-.explorations-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xlg);
-}
-
-.exploration-card__image img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.exploration-card__content {
-    margin-top: var(--spacing-md);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
 }
 
 .experience-breakdown {
@@ -199,7 +181,48 @@ a:hover {
     font-size: var(--text-normal);
 }
 
-/* Projects list */
+/* Explorations */
+
+.explorations-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xlg);
+}
+
+.exploration-card__image,
+.project-item__image {
+    background: linear-gradient(90deg, var(--bg-secondary-color) 25%, var(--border-color) 50%, var(--bg-secondary-color) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    aspect-ratio: 4096 / 3092;
+    overflow: hidden;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.exploration-card__image.loaded,
+.project-item__image.loaded {
+    animation: none;
+    background: none;
+}
+
+.exploration-card__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.exploration-card__content {
+    margin-top: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* Projects */
 
 .projects-list {
     display: flex;

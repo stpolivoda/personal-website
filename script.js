@@ -1,31 +1,28 @@
-// Scroll to top on refresh
 history.scrollRestoration = "manual";
-window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
+window.addEventListener("beforeunload", () => window.scrollTo(0, 0));
 
-// Resume download
-const icon = document.getElementById('dl-icon');
+const icon = document.getElementById("dl-icon");
 
-        icon.addEventListener('click', () => {
-            icon.innerText = 'progress_activity'; 
-            icon.classList.add('spinning');
+icon.addEventListener("click", () => {
+    icon.innerText = "progress_activity";
+    icon.classList.add("spinning");
 
-            setTimeout(() => {
-                const link = document.createElement('a');
-                link.href = 'assets/Stanislav_Polivoda_CV.pdf';
-                link.download = 'stanislav_polivoda_cv.pdf';
-                link.click();
+    setTimeout(() => {
+        const link = document.createElement("a");
+        link.href = "assets/Stanislav_Polivoda_CV.pdf";
+        link.download = "stanislav_polivoda_cv.pdf";
+        link.click();
 
-                icon.classList.remove('spinning');
-                icon.classList.add('done');
-                icon.innerText = 'check_circle';
+        icon.classList.remove("spinning");
+        icon.classList.add("done");
+        icon.innerText = "check_circle";
 
-                setTimeout(() => {
-                    icon.classList.remove('done');
-                    icon.innerText = 'download';
-                }, 3000);
-
-            }, 1200);
-        });
+        setTimeout(() => {
+            icon.classList.remove("done");
+            icon.innerText = "download";
+        }, 3000);
+    }, 1200);
+});
 
 // Filter buttons
 const filterButtons = document.querySelectorAll(".filter-btn");
@@ -81,4 +78,10 @@ filterButtons.forEach((button) => {
 window.addEventListener("popstate", () => {
     const filter = getFilterFromURL() || "explorations";
     applyFilter(filter);
+});
+
+document.querySelectorAll(".exploration-card__image img, .project-item__image img").forEach((img) => {
+    const done = () => img.parentElement.classList.add("loaded");
+    if (img.complete) done();
+    else img.addEventListener("load", done);
 });
